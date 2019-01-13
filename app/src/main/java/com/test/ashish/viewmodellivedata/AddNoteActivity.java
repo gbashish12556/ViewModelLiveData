@@ -22,10 +22,14 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+
+        MainActivity.LEAK_INT = 5;
+        AddEditNoteActivity.ADD_EDIT_LEAK = 5;
 
         titleEditText = findViewById(R.id.title);
         descriptionEditText = findViewById(R.id.description);

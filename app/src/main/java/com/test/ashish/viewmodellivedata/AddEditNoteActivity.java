@@ -20,14 +20,14 @@ public class AddEditNoteActivity extends AppCompatActivity {
     String description;
     String priority;
     int id;
-
-
+    public static int ADD_EDIT_LEAK = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_note);
 
+        MainActivity.LEAK_INT = 5;
         titleEditText = findViewById(R.id.title);
         descriptionEditText = findViewById(R.id.description);
         priorityNumberPicker = findViewById(R.id.priority);

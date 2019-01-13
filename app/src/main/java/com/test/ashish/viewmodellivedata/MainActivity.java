@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Note> allNotes;
     public static final int ADD_NOTE_REQUEST = 5;
     public static final int EDIT_NOTE_REQUEST = 6;
+    public static int LEAK_INT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
