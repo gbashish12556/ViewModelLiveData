@@ -1,43 +1,50 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 version: 2
+
+# Each job represents a phase in the Build-Test-Deploy process
 jobs:
+
   build:
+    # This is the directory into which our code will be checked out, and this path will be used as the default working directory for the rest of the job
+    working_directory: ~/code
+
+    # Container images
     docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
+      - image: circleci/android:api-27-alpha
 
     environment:
-      # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
-      TERM: dumb
+
+    branches:
+      only:
+        - master
+        - develop
+        - feature/2018-12-11-circleci-integration
 
     steps:
+
+      # We start with checkout so we can operate on the codebase.
       - checkout
 
-      # Download and cache dependencies
+      # Pull down the cache, if present
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      - run: gradle dependencies
+      #- run:
+      #   name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+      #   command: sudo chmod +x ./gradlew
 
+      # Pull down the project’s dependencies
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+
+      # Store the dependencies in order to speed things up for next time
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      # run tests!
-      - run: gradle test
-
+      # Run the unit tests, and run the built in linting tools to check your code for style issues
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
