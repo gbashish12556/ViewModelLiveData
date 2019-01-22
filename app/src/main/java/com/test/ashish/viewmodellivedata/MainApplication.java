@@ -3,12 +3,12 @@ package com.test.ashish.viewmodellivedata;
 import android.app.Application;
 import android.content.Context;
 
-import com.squareup.leakcanary.AndroidDebuggerControl;
-import com.squareup.leakcanary.AndroidHeapDumper;
-import com.squareup.leakcanary.AndroidWatchExecutor;
-import com.squareup.leakcanary.GcTrigger;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+//import com.squareup.leakcanary.AndroidDebuggerControl;
+//import com.squareup.leakcanary.AndroidHeapDumper;
+//import com.squareup.leakcanary.AndroidWatchExecutor;
+//import com.squareup.leakcanary.GcTrigger;
+//import com.squareup.leakcanary.LeakCanary;
+//import com.squareup.leakcanary.RefWatcher;
 
 public class MainApplication extends Application {
     @Override
