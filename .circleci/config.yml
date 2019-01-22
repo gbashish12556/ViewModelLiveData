@@ -17,8 +17,7 @@ jobs:
     branches:
       only:
         - master
-        - develop
-        - feature/2018-12-11-circleci-integration
+        - testbranch
 
     steps:
 
