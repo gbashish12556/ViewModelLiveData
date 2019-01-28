@@ -7,6 +7,7 @@ jobs:
     # This is the directory into which our code will be checked out, and this path will be used as the default working directory for the rest of the job
     working_directory: ~/code
 
+
     # Container images
     docker:
       - image: circleci/android:api-28-alpha
