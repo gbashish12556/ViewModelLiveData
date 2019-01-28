@@ -70,6 +70,7 @@ jobs:
           path: app/build/outputs/apk/
           destination: /apk/
 
+
       # Creates json file from string saved defined in system variables of CircleCI
       - run:
           name: Store Google Service Account
