@@ -80,7 +80,7 @@ jobs:
           name: Authorize gcloud and set config defaults
           command: |
             sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-            sudo gcloud --quiet config set project truebil-auction-app
+            sudo gcloud --quiet config set project ViewModelLiveData
 
       # Begins running test cases on Firebase Test Lab
       - run:
